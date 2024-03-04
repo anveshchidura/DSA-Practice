@@ -25,7 +25,7 @@ public:
             tail->next = temp;
             tail = tail->next;
 
-            if (temp->next != nullptr) {
+            if (temp->next != NULL) {
                 pq.push(temp->next);
             }
         }
