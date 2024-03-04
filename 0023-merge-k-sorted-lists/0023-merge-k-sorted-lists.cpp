@@ -9,12 +9,12 @@ public:
     ListNode* mergeKLists(vector<ListNode*>& lists) {
         priority_queue<ListNode*, vector<ListNode*>, comparator> pq;
 
-        for (ListNode* list : lists) {
-            if (list != nullptr) {
-                pq.push(list);
-            }
+        for(int i = 0;i<lists.size();i++){
+            if (lists[i] != nullptr) {
+            pq.push(lists[i]);
+            }    
         }
-
+        
         ListNode* dummyHead = new ListNode(0);
         ListNode* tail = dummyHead;
 
