@@ -10,7 +10,7 @@ bool containsDuplicate(vector<int> nums) {
     
     // if it contains duplicate then the size of 
     // set will not equal to the length of the array
-    if(set.size() < nums.size())
+    if(set.size() != nums.size())
         return true;
     
     return false ;
