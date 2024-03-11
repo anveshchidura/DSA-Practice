@@ -1,19 +1,23 @@
 class Solution {
 public:
-    bool isAnagram(string s, string t) {
-        unordered_map<char,int> ans;
-        if (t.length()>s.length()) swap(s,t);
-        for(auto it : s){
-            ans[it]++;
-        }
-        for(auto it : t){
-            ans[it]--;
-        }
-
-        for (auto it = ans.begin(); it != ans.end(); ++it) {
-            if(it->second > 0) return false;
-        }
-        return true;
-        
+bool isAnagram(std::string s, std::string t) {
+    if (s.length() != t.length()) {
+        return false;
     }
+
+    std::unordered_map<char, int> count;
+
+    for (int i = 0; i < s.length(); ++i) {
+        count[s[i]]++;
+        count[t[i]]--;
+    }
+
+    for (const auto& pair : count) {
+        if (pair.second != 0) {
+            return false;
+        }
+    }
+
+    return true;
+}
 };
