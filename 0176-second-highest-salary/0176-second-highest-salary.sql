@@ -1,3 +1,10 @@
-SELECT MAX(E2.salary) AS SecondHighestSalary
-FROM Employee AS E1
-LEFT JOIN Employee AS E2 ON E1.salary > E2.salary
+SELECT  
+(
+SELECT distinct A1.salary AS SecondHighestSalary
+FROM (
+    SELECT salary, DENSE_RANK() OVER (ORDER BY salary DESC) as flag
+    FROM Employee
+) AS A1
+WHERE A1.flag = 2
+) 
+as SecondHighestSalary;
