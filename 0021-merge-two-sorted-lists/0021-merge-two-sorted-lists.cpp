@@ -31,14 +31,13 @@ public:
         if(curr2->val >= curr1->val){
             currf -> next = curr1;
             curr1 = curr1->next;
-            
+            currf = currf->next;
         }
         else{
             currf -> next  = curr2;
             curr2 = curr2->next;
-        
+            currf = currf->next;
         }
-        currf = currf->next;    
         }
         
         if(curr1!= NULL){
@@ -49,8 +48,11 @@ public:
             currf ->next = curr2;
         }
         
-        return headf -> next;
+        ListNode* ans = headf -> next;
+        delete headf;
+        return ans;
         
         
-    }
+    
+};
 };
