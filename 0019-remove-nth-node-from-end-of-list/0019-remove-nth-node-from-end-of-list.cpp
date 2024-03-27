@@ -26,14 +26,13 @@ public:
             delete head;
             return newHead;
         }
-        int k = size - n;
+        int k = size - n ;
         int pos =1;
         while(curr != NULL && pos <= k){
             prev = curr;
             curr = curr->next;
             pos++;
         }
-        
         prev->next = curr->next;
         delete curr;
         return head;
