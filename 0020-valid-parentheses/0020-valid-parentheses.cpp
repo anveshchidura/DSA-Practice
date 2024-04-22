@@ -7,16 +7,17 @@ public:
         while(r < s.size()){
             if(mpp.find(s[r]) != mpp.end()){
                 if(st.empty()) return false;
-                char stop = st.top();
+                
+                if(st.top() != mpp[s[r]]) return false;
+                
                 st.pop();
-                if(stop != mpp[s[r]]) return false;
             }
             else{
                 st.push(s[r]);
             }
             r++;      
         }
-        if(st.empty()) return true;
-        return false;
+        return st.empty();
+
     }
 };
