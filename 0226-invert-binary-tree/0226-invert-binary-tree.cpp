@@ -9,14 +9,11 @@
  *     TreeNode(int x, TreeNode *left, TreeNode *right) : val(x), left(left), right(right) {}
  * };
  */
-
 class Solution {
 public:
     TreeNode* invertTree(TreeNode* root) {
-        if (root == NULL) {
-            return NULL;
-        }
-        swap(root->left, root->right);
+        if(root == NULL) return nullptr;
+        swap(root->left,root->right);
         invertTree(root->left);
         invertTree(root->right);
         return root;
