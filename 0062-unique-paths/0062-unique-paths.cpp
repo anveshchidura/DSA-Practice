@@ -2,9 +2,10 @@ class Solution {
 public:
     int uniquePaths(int m, int n) {
         vector<int> prev(n, 0);
+        vector<int> temp(n, 0);
     for (int i = 0; i < m; i++) {
         // Create a temporary vector to represent the current row.
-        vector<int> temp(n, 0);
+        
 
         // Iterate through the columns of the grid.
         for (int j = 0; j < n; j++) {
