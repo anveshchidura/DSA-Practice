@@ -1,38 +1,38 @@
+/*
+    Given grid where '1' is land & '0' is water, return largest island
+
+    DFS, set visited land to '0' to not visit it again, store biggest
+
+    Time: O(m x n)
+    Space: O(m x n)
+*/
+
 class Solution {
 public:
     int maxAreaOfIsland(vector<vector<int>>& grid) {
-        if (grid.empty() || grid[0].empty()) {
-            return 0;
-        }
-        
         int m = grid.size();
         int n = grid[0].size();
-        vector<vector<int>> vis(m, vector<int>(n, 0)); 
-        int result = 0; // Start with 0, not INT_MIN
-
+        
+        int result = 0;
+        
         for (int i = 0; i < m; i++) {
             for (int j = 0; j < n; j++) {
-                if (grid[i][j] == 1 && vis[i][j] != 1) {
-                    int area = 0; // Initialize area here
-                    dfs(grid, i, j, m, n, vis, area);
-                    result = max(result, area);
+                if (grid[i][j] == 1) {
+                    result = max(result, dfs(grid, i, j, m, n));
                 }
             }
         }
         
         return result;
     }
-    
 private:
-    void dfs(vector<vector<int>>& grid, int i, int j, int m, int n, vector<vector<int>>& vis, int& area) {
-        if (i < 0 || i >= m || j < 0 || j >= n || vis[i][j] == 1 || grid[i][j] == 0) {
-            return;
+    int dfs(vector<vector<int>>& grid, int i, int j, int m, int n) {
+        if (i < 0 || i >= m || j < 0 || j >= n || grid[i][j] == 0) {
+            return 0;
         }
-        vis[i][j] = 1;
-        area++;
-        dfs(grid, i - 1, j, m, n, vis, area);
-        dfs(grid, i + 1, j, m, n, vis, area);
-        dfs(grid, i, j - 1, m, n, vis, area);
-        dfs(grid, i, j + 1, m, n, vis, area);
+        grid[i][j] = 0;
+        
+        return 1 + dfs(grid, i - 1, j, m, n) + dfs(grid, i + 1, j, m, n)
+            + dfs(grid, i, j - 1, m, n) + dfs(grid, i, j + 1, m, n);
     }
 };
