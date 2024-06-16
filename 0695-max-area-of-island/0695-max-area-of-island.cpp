@@ -18,7 +18,10 @@ public:
         for (int i = 0; i < m; i++) {
             for (int j = 0; j < n; j++) {
                 if (grid[i][j] == 1) {
-                    result = max(result, dfs(grid, i, j, m, n));
+                    int area = 0;
+                    dfs(grid, i, j, m, n,area);
+                    result = max(result, area);
+                    
                 }
             }
         }
@@ -26,13 +29,15 @@ public:
         return result;
     }
 private:
-    int dfs(vector<vector<int>>& grid, int i, int j, int m, int n) {
+    void dfs(vector<vector<int>>& grid, int i, int j, int m, int n, int& area) {
         if (i < 0 || i >= m || j < 0 || j >= n || grid[i][j] == 0) {
-            return 0;
+            return;
         }
         grid[i][j] = 0;
-        
-        return 1 + dfs(grid, i - 1, j, m, n) + dfs(grid, i + 1, j, m, n)
-            + dfs(grid, i, j - 1, m, n) + dfs(grid, i, j + 1, m, n);
+        area++;
+        dfs(grid, i - 1, j, m, n,area); 
+        dfs(grid, i + 1, j, m, n,area);
+        dfs(grid, i, j - 1, m, n,area);
+        dfs(grid, i, j + 1, m, n,area);
     }
 };
