@@ -10,12 +10,11 @@ public:
                 results.back()[1] = max(intervals[i][1],results.back()[1]);
             }
             else{
-                results.push_back({intervals[i][0],intervals[i][1]});
+                results.push_back(intervals[i]);
             }
             
         }    
         return results;
         
-    
 }
 };
